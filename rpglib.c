@@ -13,7 +13,7 @@ typedef struct {
 struct Enemy {
     char name;
     int hp;
-    int atack;
+    int attack;
     int defense;
     int action;
     bool isAlive;
@@ -23,11 +23,16 @@ typedef struct {
     char* name;
     int lvl;
     int hp;
-    int atack;
+    int attack;
     int defense;
     bool isAlive;
-    Inventory backpack;
 } Player;
+
+int rollDice() {
+    srand(time(NULL));
+    int value = (rand() % 20)+1;
+    return value;
+}
 
 int enemyRandomizer(int numberEnemies) {
     srand(time(NULL));
@@ -53,40 +58,52 @@ void enemyName(int enemy, char name[]) {
     }
 }
 
-struct Enemy enemyLib(const char name[]) {
-
-    struct Enemy enemy = {"XXXXX",0,0,0,0,true};
-
+struct Enemy enemyLib(const char name[], struct Enemy *enemy) {
     // ========== normal foes =====
-    if (name == "goblin") {
-        struct Enemy goblin =             {"goblin", 48, 6, 12,2,true}; // enemy[0]
-        enemy = goblin;
+    if (strcmp(name, "goblin") == 0) { // Usar strcmp para comparação de strings
+        enemy->name = 'g'; // Atribuir o primeiro caractere ou usar um ponteiro para string
+        enemy->hp = 48;
+        enemy->attack = 6;
+        enemy->defense = 12;
+        enemy->action = 2;
+        enemy->isAlive = true;
     }
-
-    if (name == "bandit") {
-        struct Enemy bandit =             {"bandit", 50, 9, 14,2,true}; // enemy[1]
-        enemy = bandit;
+    else if (strcmp(name, "bandit") == 0) { // Usar strcmp
+        enemy->name = 'b';
+        enemy->hp = 50;
+        enemy->attack = 9;
+        enemy->defense = 14;
+        enemy->action = 2;
+        enemy->isAlive = true;
     }
-
     // ========== hard foe ========
-    if (name == "skeleton") {
-        struct Enemy skeleton =           {"skeleton", 55, 11, 8,2,true}; // enemy[2]
-        enemy = skeleton;
+    else if (strcmp(name, "skeleton") == 0) { // Usar strcmp
+        enemy->name = 's';
+        enemy->hp = 55;
+        enemy->attack = 11;
+        enemy->defense = 8;
+        enemy->action = 2;
+        enemy->isAlive = true;
     }
-
     // ========== bosses ==========
-
-    // only @ lvl =>  5
-    if (name == "orc") {
-        struct Enemy orc =                {"Orc", 70, 15,20,3,true}; // enemy[3]
-        enemy = orc;
+    // only @ lvl => 5
+    else if (strcmp(name, "orc") == 0) { // Usar strcmp
+        enemy->name = 'o';
+        enemy->hp = 70;
+        enemy->attack = 15;
+        enemy->defense = 20;
+        enemy->action = 3;
+        enemy->isAlive = true;
     }
     // only @ lvl => 15
-    if (name == "dragon") {
-        struct Enemy dragon =             {"Dragon", 100, 40, 20,4,true}; // enemy[4]
-        enemy = dragon;
+    else if (strcmp(name, "dragon") == 0) { // Usar strcmp
+        enemy->name = 'd';
+        enemy->hp = 100;
+        enemy->attack = 40;
+        enemy->defense = 20;
+        enemy->action = 4;
+        enemy->isAlive = true;
     }
-    return enemy;
 }
 
 int actionRandomizer(int numberActions) {

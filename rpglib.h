@@ -8,13 +8,13 @@
 typedef struct {
     int storageLimit;
     int healPotion;
-    int armor;
+    char armor;
 } Inventory;
 
 struct Enemy {
     char name;
     int hp;
-    int atack;
+    int attack;
     int defense;
     int action;
     bool isAlive;
@@ -24,18 +24,18 @@ typedef struct {
     char* name;
     int lvl;
     int hp;
-    int atack;
+    int attack;
     int defense;
     bool isAlive;
-    Inventory backpack;
 } Player;
 
+int rollDice();
 
 int enemyRandomizer(int numberEnemies);
 
 void enemyName(int enemy, char name[]);
 
-struct Enemy enemyLib(const char name[]);
+struct Enemy enemyLib(const char name[], struct Enemy *enemy);
 
 int actionRandomizer(int numberActions);
 
