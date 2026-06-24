@@ -45,7 +45,7 @@ O momento de combate continua até que um dos dois personagens seja finalizado.
             **2°:** Próximo Turno;
 
 * **Caso não Ideal**: inimigo defendendo:</br>
-    ÚNICO: Não há ataques, próximo turno.
+    >    ÚNICO: Não há ataques, próximo turno.
 
 #### Caso escolha `UsarItem()`:
 
